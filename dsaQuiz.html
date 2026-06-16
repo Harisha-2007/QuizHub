@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DSA Quiz</title>
+    <link rel="stylesheet" href="dsaQuiz.css">
+</head>
+<body>
+<h1>DSA Quiz</h1>
+
+<h2 id="question"></h2>
+
+<button onclick="checkAnswer(0)" id="op1"></button><br><br>
+<button onclick="checkAnswer(1)" id="op2"></button><br><br>
+<button onclick="checkAnswer(2)" id="op3"></button><br><br>
+<button onclick="checkAnswer(3)" id="op4"></button>
+
+<p id="result"></p>
+
+<script>
+const quiz = [
+{
+    question: "What does DSA stand for?",
+    options: [
+        "Data Structure and Algorithm",
+        "Digital System Architecture",
+        "Data Science Analysis",
+        "Dynamic System Access"
+    ],
+    answer: 0
+},
+{
+    question: "Which data structure uses FIFO?",
+    options: [
+        "Stack",
+        "Queue",
+        "Tree",
+        "Graph"
+    ],
+    answer: 1
+},
+{
+    question: "Which data structure uses LIFO?",
+    options: [
+        "Queue",
+        "Array",
+        "Stack",
+        "Linked List"
+    ],
+    answer: 2
+},
+{
+    question: "Which is fastest searching algorithm (sorted array)?",
+    options: [
+        "Linear Search",
+        "Binary Search",
+        "Bubble Sort",
+        "DFS"
+    ],
+    answer: 1
+},
+{
+    question: "Time complexity of Binary Search?",
+    options: [
+        "O(n)",
+        "O(n²)",
+        "O(log n)",
+        "O(1)"
+    ],
+    answer: 2
+},
+{
+    question: "Which data structure uses nodes?",
+    options: [
+        "Array",
+        "Linked List",
+        "String",
+        "Matrix"
+    ],
+    answer: 1
+},
+{
+    question: "Which algorithm is used for sorting?",
+    options: [
+        "Bubble Sort",
+        "DFS",
+        "BFS",
+        "Binary Search"
+    ],
+    answer: 0
+},
+{
+    question: "Which is non-linear data structure?",
+    options: [
+        "Array",
+        "Stack",
+        "Tree",
+        "Queue"
+    ],
+    answer: 2
+},
+{
+    question: "What is space complexity?",
+    options: [
+        "Time taken by algorithm",
+        "Memory used by algorithm",
+        "Speed of CPU",
+        "Input size"
+    ],
+    answer: 1
+},
+{
+    question: "Which traversal is used in trees?",
+    options: [
+        "Inorder, Preorder, Postorder",
+        "Linear, Binary",
+        "Push, Pop",
+        "FIFO, LIFO"
+    ],
+    answer: 0
+}
+];
+let currentQuestion = 0;
+let score = 0;
+function loadQuestion() {
+
+    document.getElementById("question").innerHTML =
+        quiz[currentQuestion].question;
+
+    document.getElementById("op1").innerHTML =
+        quiz[currentQuestion].options[0];
+
+    document.getElementById("op2").innerHTML =
+        quiz[currentQuestion].options[1];
+
+    document.getElementById("op3").innerHTML =
+        quiz[currentQuestion].options[2];
+
+    document.getElementById("op4").innerHTML =
+        quiz[currentQuestion].options[3];
+
+    document.getElementById("result").innerHTML = "";
+}
+
+function checkAnswer(selected) {
+
+    if(selected === quiz[currentQuestion].answer){
+        score++;
+        document.getElementById("result").innerHTML =
+            "✅ Correct!";
+    } else {
+        document.getElementById("result").innerHTML =
+            "❌ Wrong!";
+    }
+
+    setTimeout(() => {
+
+        currentQuestion++;
+
+        if(currentQuestion < quiz.length){
+            loadQuestion();
+        } else {
+
+    document.body.innerHTML = `
+    <div class="result-container">
+
+        <h1>Quiz Completed 🎉</h1>
+
+        <h2>Your Score: ${score} / ${quiz.length}</h2>
+
+        <h3>Feedback</h3>
+
+        <textarea id="feedback"
+        placeholder="Enter your feedback here..."
+        rows="5"
+        cols="40"></textarea>
+
+        <br><br>
+
+        <button onclick="submitFeedback()">
+            Submit Feedback
+        </button>
+
+        <br><br>
+
+        <button onclick="window.location.href='quiz.html'">
+            Back to Quiz Selection
+        </button>
+
+    </div>
+    `;
+        }
+
+    }, 1000);
+}
+function submitFeedback() {
+
+    let feedback =
+        document.getElementById("feedback").value;
+
+    if(feedback.trim() === "") {
+        alert("Please enter feedback.");
+        return;
+    }
+
+    alert("Thank you for your feedback!");
+
+    console.log("Feedback:", feedback);
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

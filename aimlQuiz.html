@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AIML Quiz</title>
+    <link rel="stylesheet" href="aimlQuiz.css">
+</head>
+<body>
+<h1>AIML Quiz</h1>
+
+<h2 id="question"></h2>
+
+<button onclick="checkAnswer(0)" id="op1"></button><br><br>
+<button onclick="checkAnswer(1)" id="op2"></button><br><br>
+<button onclick="checkAnswer(2)" id="op3"></button><br><br>
+<button onclick="checkAnswer(3)" id="op4"></button>
+
+<p id="result"></p>
+
+<script>
+const quiz = [
+{
+    question: "What does AIML stand for?",
+    options: [
+        "Artificial Intelligence and Machine Learning",
+        "Advanced Internet Machine Logic",
+        "Artificial Integrated Model Learning",
+        "Automated Intelligent Machine Language"
+    ],
+    answer: 0
+},
+{
+    question: "Which language is commonly used in Machine Learning?",
+    options: [
+        "Python",
+        "HTML",
+        "CSS",
+        "SQL"
+    ],
+    answer: 0
+},
+{
+    question: "Which of the following is an AI application?",
+    options: [
+        "Chatbot",
+        "Calculator",
+        "Notepad",
+        "Paint"
+    ],
+    answer: 0
+},
+{
+    question: "Machine Learning is a subset of:",
+    options: [
+        "Artificial Intelligence",
+        "Java",
+        "Database",
+        "Networking"
+    ],
+    answer: 0
+},
+{
+    question: "Which library is popular for Machine Learning in Python?",
+    options: [
+        "Scikit-learn",
+        "Bootstrap",
+        "React",
+        "Spring"
+    ],
+    answer: 0
+},
+{
+    question: "What is the full form of AI?",
+    options: [
+        "Artificial Intelligence",
+        "Automatic Internet",
+        "Advanced Interface",
+        "Artificial Integration"
+    ],
+    answer: 0
+},
+{
+    question: "Which algorithm is used for classification?",
+    options: [
+        "Decision Tree",
+        "HTML",
+        "CSS",
+        "FTP"
+    ],
+    answer: 0
+},
+{
+    question: "What is a dataset?",
+    options: [
+        "Collection of data",
+        "Programming language",
+        "Web browser",
+        "Operating system"
+    ],
+    answer: 0
+},
+{
+    question: "Which type of learning uses labeled data?",
+    options: [
+        "Supervised Learning",
+        "Unsupervised Learning",
+        "Reinforcement Learning",
+        "Deep Learning"
+    ],
+    answer: 0
+},
+{
+    question: "Which field focuses on neural networks?",
+    options: [
+        "Deep Learning",
+        "Cloud Computing",
+        "Cyber Security",
+        "Networking"
+    ],
+    answer: 0
+}
+];
+let currentQuestion = 0;
+let score = 0;
+function loadQuestion() {
+
+    document.getElementById("question").innerHTML =
+        quiz[currentQuestion].question;
+
+    document.getElementById("op1").innerHTML =
+        quiz[currentQuestion].options[0];
+
+    document.getElementById("op2").innerHTML =
+        quiz[currentQuestion].options[1];
+
+    document.getElementById("op3").innerHTML =
+        quiz[currentQuestion].options[2];
+
+    document.getElementById("op4").innerHTML =
+        quiz[currentQuestion].options[3];
+
+    document.getElementById("result").innerHTML = "";
+}
+
+function checkAnswer(selected) {
+
+    if(selected === quiz[currentQuestion].answer){
+        score++;
+        document.getElementById("result").innerHTML =
+            "✅ Correct!";
+    } else {
+        document.getElementById("result").innerHTML =
+            "❌ Wrong!";
+    }
+
+    setTimeout(() => {
+
+        currentQuestion++;
+
+        if(currentQuestion < quiz.length){
+            loadQuestion();
+        } else {
+
+    document.body.innerHTML = `
+    <div class="result-container">
+
+        <h1>Quiz Completed 🎉</h1>
+
+        <h2>Your Score: ${score} / ${quiz.length}</h2>
+
+        <h3>Feedback</h3>
+
+        <textarea id="feedback"
+        placeholder="Enter your feedback here..."
+        rows="5"
+        cols="40"></textarea>
+
+        <br><br>
+
+        <button onclick="submitFeedback()">
+            Submit Feedback
+        </button>
+
+        <br><br>
+
+        <button onclick="window.location.href='quiz.html'">
+            Back to Quiz Selection
+        </button>
+
+    </div>
+    `;
+        }
+
+    }, 1000);
+}
+function submitFeedback() {
+
+    let feedback =
+        document.getElementById("feedback").value;
+
+    if(feedback.trim() === "") {
+        alert("Please enter feedback.");
+        return;
+    }
+
+    alert("Thank you for your feedback!");
+
+    console.log("Feedback:", feedback);
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

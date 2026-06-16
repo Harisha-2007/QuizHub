@@ -1,0 +1,40 @@
+.login-page h2{
+    color:black;
+}
+body{
+    margin:0;
+    padding:0;
+    background-image:url("q11.png");
+    background-size: cover;
+}
+.login-page{
+    width: 300px;
+    padding: 40px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+.login-page input{
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.login-page button{
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(54, 121, 203);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+.login-page button:hover{
+    background-color: rgb(5, 58, 66);
+}

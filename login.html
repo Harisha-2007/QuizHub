@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="login-page">
+
+    <h2>Login Page</h2>
+
+    <label>Email:</label>
+    <input type="email" id="email" placeholder="Enter Email">
+    <br><br>
+
+    <label>Password:</label>
+    <input type="password" id="password" placeholder="Enter Password">
+    <br><br>
+
+    <button type="button" onclick="login()">Login</button>
+
+</div>
+
+<script>
+function login() {
+
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    if(email === "admin@gmail.com" && password === "12345") {
+        window.location.href = "quiz.html";
+    }
+    else {
+        alert("Invalid Email or Password");
+    }
+}
+</script>
+
+</body>
+</html>
